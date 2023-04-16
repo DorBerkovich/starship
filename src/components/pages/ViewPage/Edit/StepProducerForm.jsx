@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { Grid, List, ListItem, ListItemText } from "@mui/material";
 // import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import config from "../config";
+import config from "../../../../config";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -51,7 +51,7 @@ function StepProducerForm(props) {
   let handleClick = () => {
     props.setChangesToApply({
       ...props.nodeInfo,
-      data: { ...props.nodeInfo.data, label: SPName },
+      data: { ...props.nodeInfo.data, label: SPName }, // ... = {example: "1", {example2: "2"}} -> {example: "1",example2: "2"} as Json
       class: "step_producer." + SPClass,
       // enable: SPEnable,
     });

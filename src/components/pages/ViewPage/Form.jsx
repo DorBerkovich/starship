@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import StepProducerForm from "./StepProducerForm";
-import PhaseForm from "./PhaseForm";
-import SaveButton from "./SaveButton";
+import StepProducerForm from "./Edit/StepProducerForm";
+import PhaseForm from "./Edit/PhaseForm";
+import SaveButton from "./Edit/SaveButton";
+import PipelineForm from "./Edit/PipelineForm";
 
+// 3 types of form: pipeline/step_producer/phase. Show the relevant in the form
 function Form(props) {
   console.log(props.nodeInfo.id);
   return (
@@ -15,22 +17,25 @@ function Form(props) {
         overflow: "auto",
       }}
     >
-      {props.nodeInfo.nodeId === "0" ? (
-        "Create a new pipeline"
+      {props.nodeInfo.nodeId === "0" ? ( // White canvas
+        "Create a new pipeline" // ToDo: complete create new pipeline
       ) : props.nodeInfo.stringType === "step_producer" ? (
         <StepProducerForm
           nodeInfo={props.nodeInfo}
           setChangesToApply={(changes) => props.setChangesToApply(changes)}
         />
       ) : props.nodeInfo.stringType === "pipeline" ? (
-        "<PipelineForm />"
+        <PipelineForm 
+        nodeInfo={props.nodeInfo}
+          setChangesToApply={(changes) => props.setChangesToApply(changes)}
+        />
       ) : props.nodeInfo.stringType === "phase" ? (
         <PhaseForm
           nodeInfo={props.nodeInfo}
           setChangesToApply={(changes) => props.setChangesToApply(changes)}
         />
       ) : null}
-      <SaveButton nodesWithState = {props.nodesWithState}/>
+      {/* <SaveButton nodesWithState={props.nodesWithState} /> */}
     </div>
   );
 }
